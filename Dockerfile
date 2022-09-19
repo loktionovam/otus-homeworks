@@ -1,14 +1,16 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
-LABEL version="0.5" maintainer="Express42"
+LABEL version="1.0" maintainer="loktionovam@gmail.com"
 
-ARG PACKER_VER=1.2.4
+ARG PACKER_VER=1.8.3
 ARG TERRAFORM_VER=0.11.7
 ARG TFLINT_VER=0.7.0
-ARG ANSIBLE_VER=2.6.0
-ARG ANSLINT_VER=3.4.23
+ARG ANSIBLE_VER=2.10.6
+ARG ANSLINT_VER=4.2.0
 ARG DOCKERVERSION=18.03.0-ce
 ARG DOCKERCOMPOSE_VER=1.21.0
+
+ENV CHEF_LICENSE=accept
 
 RUN apt-get update && \
     apt-get install -y unzip curl python3 netcat openvpn openssh-server git sudo python-pip && \
@@ -21,6 +23,9 @@ RUN mkdir /var/run/sshd && \
 RUN useradd appuser -m -G sudo
 
 COPY id_rsa_test.pub /root/.ssh/authorized_keys
+
+# Install ansible & ansible-lint
+RUN pip install --upgrade pip && pip install ansible==${ANSIBLE_VER} ansible-lint==${ANSLINT_VER} docker-compose==${DOCKERCOMPOSE_VER}
 
 # Install InSpec
 RUN curl https://omnitruck.chef.io/install.sh | bash -s -- -P inspec
@@ -53,8 +58,6 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
     && mv docker/docker /usr/local/bin \
     && rm -r docker docker.tgz
 
-# Install ansible & ansible-lint
-RUN pip install ansible==${ANSIBLE_VER} ansible-lint==${ANSLINT_VER} docker-compose==${DOCKERCOMPOSE_VER}
 
 WORKDIR /srv
 VOLUME /srv

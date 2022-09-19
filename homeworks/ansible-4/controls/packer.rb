@@ -23,13 +23,13 @@ control 'packer' do
   end
 
   describe command('packer validate -var-file=packer/variables.json.example packer/app.json') do
-    its('stdout') { should eq "Template validated successfully.\n" }
+    its('stdout') { should eq "The configuration is valid.\n" }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
   end
 
   describe command('packer validate -var-file=packer/variables.json.example packer/db.json') do
-    its('stdout') { should eq "Template validated successfully.\n" }
+    its('stdout') { should eq "The configuration is valid.\n" }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
   end

@@ -28,19 +28,19 @@ control 'packer' do
   end
 
   describe command('cd packer && packer validate -var-file=variables.json.example ubuntu16.json') do
-    its('stdout') { should eq "Template validated successfully.\n" }
+    its('stdout') { should eq "The configuration is valid.\n" }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
   end
 
   describe command('cd packer && packer validate -var-file=variables.json.example app.json') do
-    its('stdout') { should eq "Template validated successfully.\n" }
+    its('stdout') { should eq "The configuration is valid.\n" }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
   end
 
   describe command('cd packer && packer validate -var-file=variables.json.example db.json') do
-    its('stdout') { should eq "Template validated successfully.\n" }
+    its('stdout') { should eq "The configuration is valid.\n" }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
   end
