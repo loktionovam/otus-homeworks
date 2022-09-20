@@ -21,7 +21,7 @@ control 'structure' do
     it { should exist }
   end
 
-    describe file('packer/ubuntu16.json') do
+    describe file('packer/ubuntu18.json') do
     it { should exist }
     its('content') { should match(%r{\n\Z}) }
   end

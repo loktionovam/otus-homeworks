@@ -7,7 +7,7 @@ control 'packer' do
   impact 1
   title 'Run packer validate'
 
-  describe file('packer/ubuntu16.json') do
+  describe file('packer/ubuntu18.json') do
     it { should exist }
     its('content') { should match(%r{\n\Z}) }
   end
@@ -27,7 +27,7 @@ control 'packer' do
     its('content') { should match(%r{\n\Z}) }
   end
 
-  describe command('cd packer && packer validate -var-file=variables.json.example ubuntu16.json') do
+  describe command('cd packer && packer validate -var-file=variables.json.example ubuntu18.json') do
     its('stdout') { should eq "The configuration is valid.\n" }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
