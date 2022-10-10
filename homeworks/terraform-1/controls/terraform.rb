@@ -11,7 +11,7 @@ control 'terraform' do
     it { should exist }
   end
 
-  describe command('cd terraform && terraform init && terraform validate') do
+  describe command('cd terraform && terraform init && terraform validate -no-color') do
     its('stdout') { should match "Success! The configuration is valid." }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
