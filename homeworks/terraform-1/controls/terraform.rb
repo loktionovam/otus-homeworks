@@ -12,12 +12,12 @@ control 'terraform' do
   end
 
   describe command('cd terraform && terraform init && terraform validate') do
-    its('stdout') { should match "Terraform has been successfully initialized!" }
+    its('stdout') { should match "Success! The configuration is valid." }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
   end
 
-  describe command('cd terraform && tflint --var-file=terraform.tfvars.example --error-with-issues') do
+  describe command('cd terraform && tflint --var-file=terraform.tfvars.example') do
     its('stdout') { should match "Your code is following the best practices" }
     its('stderr') { should eq '' }
     its('exit_status') { should eq 0 }
