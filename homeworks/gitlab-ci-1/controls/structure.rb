@@ -9,7 +9,7 @@ control 'structure' do
     its('content') { should include 'image: ruby:2.4.2' }
     its('content') { should include 'DATABASE_URL:' }
     its('content') { should include '- cd reddit' }
-    its('content') { should include '- mongo:latest' }
+    its('content') { should include '- mongo:3.2' }
     its('content') { should include '- bundle install' }
     its('content') { should include '- ruby simpletest.rb' }
     # its('content') { should match(/%r{\n\Z}/) }

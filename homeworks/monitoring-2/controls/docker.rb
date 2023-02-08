@@ -16,7 +16,7 @@ endpoints = [
 ]
 
 containers = [
-  "docker run -d --network=#{network} --name=mongodb --network-alias=post_db --network-alias=comment_db mongo:latest",
+  "docker run -d --network=#{network} --name=mongodb --network-alias=post_db --network-alias=comment_db mongo:3.2",
   "docker run -d --network=#{network} --name=post #{user}/post:#{version}",
   "docker run -d --network=#{network} --name=comment #{user}/comment:#{version}",
   "docker run -d --network=#{network} -p 9292:9292 --name=ui #{user}/ui:#{version}",
